@@ -5,10 +5,6 @@ var express = require('express'),
   Administrator = require('./api/models/totrAdministratorModel'), //created model loading here
   bodyParser = require('body-parser');
   
-// mongoose instance connection url connection
-mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://admin:BAkt4pCpJt2KPL4l@mongodb-ostest.1d35.starter-us-east-1.openshiftapps.com:27017/totr');
-
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
@@ -36,29 +32,15 @@ if (mongoURL == null && process.env.DATABASE_SERVICE_NAME) {
     mongoURL += mongoHost + ':' +  mongoPort + '/' + mongoDatabase;
   }
 }
-var db = null,
-    dbDetails = new Object();
 
-var initDb = function(callback) {
-  if (mongoURL == null) return;
-
-  var mongodb = require('mongodb');
-  if (mongodb == null) return;
-
-  mongodb.connect(mongoURL, function(err, conn) {
-    if (err) {
-      callback(err);
-      return;
-    }
-
-    db = conn;
-    dbDetails.databaseName = db.databaseName;
-    dbDetails.url = mongoURLLabel;
-    dbDetails.type = 'MongoDB';
-
-    console.log('Connected to MongoDB at: %s', mongoURL);
-  });
-};
+if (mongoURL != null){
+	// mongoose instance connection url connection
+	mongoose.Promise = global.Promise;
+	mongoose.connect(mongoURL);
+}
+else{
+	;//an error should be raise here
+}
 
 
 
