@@ -19,8 +19,10 @@ if (mongoURL == null && process.env.DATABASE_SERVICE_NAME) {
       mongoHost = process.env[mongoServiceName + '_SERVICE_HOST'],
       mongoPort = process.env[mongoServiceName + '_SERVICE_PORT'],
       mongoDatabase = process.env[mongoServiceName + '_DATABASE'],
-      mongoPassword = process.env[mongoServiceName + '_PASSWORD']
-      mongoUser = process.env[mongoServiceName + '_USER'];
+      //mongoPassword = process.env[mongoServiceName + '_PASSWORD']
+      //mongoUser = process.env[mongoServiceName + '_USER'];
+	  mongoPassword = 'BAkt4pCpJt2KPL4l',
+      mongoUser = 'admin';
 
   if (mongoHost && mongoPort && mongoDatabase) {
     mongoURLLabel = mongoURL = 'mongodb://';
