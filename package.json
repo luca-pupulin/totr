@@ -12,7 +12,8 @@
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
     "express": "^4.16.2",
-    "mongoose": "^4.13.9"
+    "mongoose": "^4.13.9",
+	"mocha": "^2.4.5"
   },
   "devDependencies": {
     "nodemon": "^1.14.9"
