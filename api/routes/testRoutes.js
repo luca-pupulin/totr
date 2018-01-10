@@ -16,4 +16,7 @@ module.exports = function(app) {
 		
 	app.route('/totr/admin/removeTenant')
 		.post(totr.removeTenant);
+		
+	app.route('/totr/admin/:myMethod')
+		.post(totr[myMethod]);
 };
