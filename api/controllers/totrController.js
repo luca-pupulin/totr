@@ -60,7 +60,7 @@ exports.addTenant = function(req, res){
 	var new_Teant = new Tenant(req.body);
 	
 	console.log(Date.now()+' - Try to save the new Tenant biult from req.body');
-	Tenant.save(function(err, createdTenant){		
+	new_Teant.save(function(err, createdTenant){		
 		if(err){
 			console.log(Date.now()+' - Error during the "save" operation:\n'+err);
 			res.send(err);
