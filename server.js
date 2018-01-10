@@ -1,7 +1,8 @@
 var express = require('express'),
   app = express(),
   mongoose = require('mongoose'),
-  bodyParser = require('body-parser');
+  bodyParser = require('body-parser'),
+  Administrator = require('./api/models/totrAdministratorModel'); //created model loading here
   
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
