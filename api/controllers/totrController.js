@@ -1,7 +1,8 @@
 'use strict';
 
 var mongoose = require('mongoose'),
-	Administrator = mongoose.model('Administrator');
+	Administrator = mongoose.model('Administrator'),
+	Tenant = mongoose.model('Tenant');
 
 exports.register = function(req,res){
 	console.log(Date.now()+' - Entered in "Register". The request body is:\n' + req.body);
