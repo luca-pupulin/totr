@@ -51,7 +51,7 @@ exports.fake_login = function(req, res){
 	
 	Administrator.findOne({emailAddress: req.body.emailAddress}, function(err, administrator) {
 		if(!err)
-			if (administrator.password != req.body.password)) {
+			if (administrator.password != req.body.password){
 				console.log('Administrator found but password do not match');
 				res.json({"Error":"Password do not match"});
 			}
