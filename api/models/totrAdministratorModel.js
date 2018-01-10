@@ -28,7 +28,7 @@ var AdministratorSchema = new Schema({
 	set: v => bcrypt.hashSync(v, bcrypt.genSaltSync(8), null)
   },
   administeredCondominiums: {
-	type: Array
+	type: [{}]
   }
 });
 
