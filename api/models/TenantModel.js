@@ -18,8 +18,8 @@ var TenantSchema = new Schema({
 	required: 'Please enter the email address',
 	unique: true
   },
-  licenseKey:{
-	type:String  
+  licenses:{
+	type:[]  
   }
 });
 

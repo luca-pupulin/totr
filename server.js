@@ -2,8 +2,9 @@ var express = require('express'),
   app = express(),
   mongoose = require('mongoose'),
   bodyParser = require('body-parser'),
-  Administrator = require('./api/models/totrAdministratorModel')
-  Tenat = require('./api/models/totrTenantModel'); //created model loading here
+  Administrator = require('./api/models/AdministratorModel')
+  Tenat = require('./api/models/TenantModel'),
+  Condominium = require('./api/models/CondominiumModel');;
   
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -51,7 +52,7 @@ app.use(function(err, req, res, next){
 });
 
 
-var routes = require('./api/routes/testRoutes'); //importing route
+var routes = require('./api/routes/Routes'); //importing route
 routes(app); //register the route
 
 app.listen(port);

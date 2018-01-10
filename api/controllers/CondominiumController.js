@@ -1,9 +1,8 @@
 'use strict';
 
 var mongoose = require('mongoose'),
-	Administrator = mongoose.model('Administrator'),
-	Tenant = mongoose.model('Tenant');
-
+	Condominium = mongoose.model('Condominium');
+/*
 exports.register = function(req,res){
 	console.log(Date.now()+' - Entered in "Register". The request body is:\n' + req.body);
 	var new_Administrator = new Administrator(req.body);
@@ -20,6 +19,29 @@ exports.register = function(req,res){
 		}
 	});
 	console.log(Date.now()+' - Exit from "Register"');
+};
+
+exports.updateTenant = function(req, res){
+	console.log(Date.now()+' - Entered in "updateAdministrator". The request body is:\n' + req.body);
+	
+	var administratorToUpdate = new Administrator(req.body);
+	
+	console.log(Date.now()+' - Try to update the Administrator');
+	
+	Administrator.findOneAndUpdate({emailAddress: req.body.emailAddress}, 
+							administratorToUpdate, 
+							{new: false, upsert: true, setDefaultsOnInsert: true}, 
+							function(err, updatedAdmin){
+		if(err){
+			console.log(Date.now()+' - Error during the "update" operation:\n'+err);
+			res.send(err);
+		}
+		else{
+			console.log(Date.now()+' - Administrator correctly updated');
+			res.json(updatedAdmin);			
+		}
+	});
+	console.log(Date.now()+' - Exit from "updateAdministrator"');
 };
 
 exports.login = function(req, res){
@@ -117,6 +139,4 @@ exports.updateTenant = function(req, res){
 		}
 	});
 	console.log(Date.now()+' - Exit from "updateTenant"');
-};
-
-
+};*/
