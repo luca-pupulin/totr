@@ -11,12 +11,14 @@ module.exports = function(app) {
 	app.route('/totr/admin/addTenant')
 		.post(totr.addTenant);
 		
-	/*app.route('/totr/admin/updateTenant')
-		.post(totr.updateTenant);*/
+	app.route('/totr/admin/updateTenant')
+		.post(totr.updateTenant);
 		
 	app.route('/totr/admin/removeTenant')
 		.post(totr.removeTenant);
 		
+	/*
 	app.route('/totr/admin/:myMethod')
-		.post(totr[myMethod]);
+		.post(totr[mymethod);
+	*/
 };
