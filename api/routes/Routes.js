@@ -24,7 +24,7 @@ module.exports = function(app) {
 		.post(tenantController.removeTenant);
 	
 	app.route('/totr/condominium/create')
-		.post(condominiumController.create);
+		.post(condominiumController.createCondominium);
 		
 	app.route('/totr/condominium/update')
 		.post(condominiumController.updateCondominium);
