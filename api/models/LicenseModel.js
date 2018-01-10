@@ -2,16 +2,17 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var bcrypt = require('bcrypt-nodejs');
+var ObjectId = mongoose.Schema.Types.ObjectId;
 const uuidv5 = require('uuid/v5');
 
 var LicenseSchema = new Schema({
 	condominiumID : {
-		type: Schema.Types.ObjectID,
+		type: ObjectId,
 		required: 'Enter condominiumID',
 		unique: true
 		},
 	tenantID : {
-		type: Schema.Types.ObjectID,
+		type: ObjectId,
 		required: 'Enter tenantID',
 		unique: true
 		},

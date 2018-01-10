@@ -3,7 +3,7 @@
 var mongoose = require('mongoose'),
 	Condominium = mongoose.model('Condominium');
 
-exports.create = function(req,res){
+exports.createCondominium = function(req,res){
 	console.log(Date.now()+' - Entered in "Create". The request body is:\n' + req.body);
 	var new_Condominium = new Condominium(req.body);
 	
