@@ -29,7 +29,7 @@ exports.login = function(req, res){
 		function(err, administrator) {
 			console.log("Error: "+err+"\tadministrator: "+administrator);
 			if(!err){
-				if(!administrator){
+				if(administrator != null){
 					if (!administrator.validPassword(req.body.password)) {
 						console.log('Administrator found but password do not match');
 						res.json({"Error":"Password do not match"});
@@ -51,34 +51,4 @@ exports.login = function(req, res){
 		}
 	);
 	console.log('Exit from "Login"');
-};
-
-exports.fake_login = function(req, res){
-	console.log('Entered in "Fake Login". The request body is:\n' + req.body);
-	console.log('Request parametes are:\n - ' + req.body.emailAddress+'\n - ' + req.body.password);
-	
-	Administrator.findOne({emailAddress: req.body.emailAddress}, function(err, administrator) {
-		console.log("Error: "+err+"\tadministrator: "+administrator);
-		if(!err){
-			if(!administrator){
-				if (administrator.password != req.body.password){
-					console.log('Administrator found but password do not match');
-					res.json({"Error":"Password do not match"});
-				}
-				else {
-					console.log('Passwords match');
-					res.json({"Redirect":"MainPage","Administrator":administrator});
-				}
-			}
-			else{
-				console.log('Returned object "administrator" is null');
-				res.json({"Error":'Returned object "administrator" is null'});
-			}
-		}
-		else{
-			console.log('Error during the "findOne" operation:\n'+err);
-			res.send(err);
-		}
-	});
-	console.log('Exit from "Fake Login"');
 };
