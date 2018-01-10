@@ -35,6 +35,7 @@ var AdministratorSchema = new Schema({
 
 // checking if password is valid
 AdministratorSchema.methods.validPassword = function(password) {
+  console.log("Checking passwords for: "+this.emailAddress);
   return bcrypt.compareSync(password, this.password);
 };
 
