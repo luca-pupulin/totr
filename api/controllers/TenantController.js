@@ -54,7 +54,7 @@ exports.updateTenant = function(req, res){
 	
 	Tenant.findOneAndUpdate({emailAddress: req.body.emailAddress}, 
 							tenantToUpdate, 
-							{new: true, upsert: true, setDefaultsOnInsert: true}, 
+							{new: false, upsert: true, setDefaultsOnInsert: true}, 
 							function(err, updatedTenant){
 		if(err){
 			console.log(Date.now()+' - Error during the "update" operation:\n'+err);

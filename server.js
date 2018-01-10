@@ -4,7 +4,8 @@ var express = require('express'),
   bodyParser = require('body-parser'),
   Administrator = require('./api/models/AdministratorModel')
   Tenat = require('./api/models/TenantModel'),
-  Condominium = require('./api/models/CondominiumModel');;
+  Condominium = require('./api/models/CondominiumModel'),
+  License = require('./api/models/LicenseModel');
   
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
