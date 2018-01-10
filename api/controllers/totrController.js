@@ -27,15 +27,23 @@ exports.login = function(req, res){
 	
 	Administrator.findOne({emailAddress: req.body.emailAddress},
 		function(err, administrator) {
-			if(!err)
-				if (!administrator.validPassword(req.body.password)) {
-					console.log('Administrator found but password do not match');
-					res.json({"Error":"Password do not match"});
+			console.log("Error: "+err+"\tadministrator: "+administrator);
+			if(!err){
+				if(!administrator){
+					if (!administrator.validPassword(req.body.password)) {
+						console.log('Administrator found but password do not match');
+						res.json({"Error":"Password do not match"});
+					}
+					else {
+						console.log('Passwords match');
+						res.json({"Redirect":"MainPage","Administrator":administrator});
+					}
 				}
-				else {
-					console.log('Passwords match');
-					res.json({"Redirect":"MainPage","Administrator":administrator});
+				else{
+					console.log('Returned object "administrator" is null');
+					res.json({"Error":'Returned object "administrator" is null'});
 				}
+			}
 			else{
 				console.log('Error during the "findOne" operation:\n'+err);
 				res.send(err);
@@ -50,15 +58,23 @@ exports.fake_login = function(req, res){
 	console.log('Request parametes are:\n - ' + req.body.emailAddress+'\n - ' + req.body.password);
 	
 	Administrator.findOne({emailAddress: req.body.emailAddress}, function(err, administrator) {
-		if(!err)
-			if (administrator.password != req.body.password){
-				console.log('Administrator found but password do not match');
-				res.json({"Error":"Password do not match"});
+		console.log("Error: "+err+"\tadministrator: "+administrator);
+		if(!err){
+			if(!administrator){
+				if (administrator.password != req.body.password){
+					console.log('Administrator found but password do not match');
+					res.json({"Error":"Password do not match"});
+				}
+				else {
+					console.log('Passwords match');
+					res.json({"Redirect":"MainPage","Administrator":administrator});
+				}
 			}
-			else {
-				console.log('Passwords match');
-				res.json({"Redirect":"MainPage","Administrator":administrator});
+			else{
+				console.log('Returned object "administrator" is null');
+				res.json({"Error":'Returned object "administrator" is null'});
 			}
+		}
 		else{
 			console.log('Error during the "findOne" operation:\n'+err);
 			res.send(err);
