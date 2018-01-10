@@ -6,10 +6,11 @@ var mongoose = require('mongoose'),
 exports.register = function(req,res){
 	var new_Administrator = new Administrator(req.body);
 	
-	Administrator.save(function(err,new_Administrator){
+	new_Administrator.save(function(err){
 		if(err)
 			res.send(err);
-		res.json(new_Administrator);
+		else
+			res.json(this);
 	});
 };
 
@@ -17,9 +18,19 @@ exports.login = function(req, res){
 	Administrator.findOne({emailAddress: req.body.emailAddress}, function(err, administrator) {
 
     if (!administrator.validPassword(req.body.password)) {
-      res.end({"Error":"Password do not match"});
+      res.json({"Error":"Password do not match"});
     } else {
-      res.end({"Redirect":"MainPage"});
+      res.json({"Redirect":"MainPage"});
     }
+  });
+};
+
+exports.fake_login = function(req, res){
+	Administrator.findOne({emailAddress: req.body.emailAddress}, function(err, administrator) {
+		if (req.body.password != administrator.password) {
+		  res.json({"Error":"Password do not match"});
+		} else {
+		  res.json({"Redirect":"MainPage"});
+		}
   });
 };
