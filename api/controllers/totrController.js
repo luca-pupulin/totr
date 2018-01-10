@@ -86,7 +86,7 @@ exports.removeTenant = function(req, res){
 		else{
 			console.log(Date.now()+' - Tenant correctly removed');
 			Tenant.findById(tenant._id, function (err, removedTenant) {
-				if(removedTenant)
+				if(!removedTenant)
 					res.json({"result":"deleted"});
 				else
 					res.json({"result":err,"tenant":removedTenant});
@@ -94,6 +94,29 @@ exports.removeTenant = function(req, res){
 		}
 	});
 	console.log(Date.now()+' - Exit from "removeTenant"');
+};
+
+exports.updateTenant = function(req, res){
+	console.log(Date.now()+' - Entered in "updateTenant". The request body is:\n' + req.body);
+	
+	var tenantToUpdate = new Tenant(req.body);
+	
+	console.log(Date.now()+' - Try to update the Tenant');
+	
+	Tenant.findOneAndUpdate({_id: tenantToUpdate._id}, 
+							tenantToUpdate, 
+							{new: false, upsert: true, setDefaultsOnInsert: true}, 
+							function(err, updatedTenant){
+		if(err){
+			console.log(Date.now()+' - Error during the "update" operation:\n'+err);
+			res.send(err);
+		}
+		else{
+			console.log(Date.now()+' - Tenant correctly updated');
+			res.json(updatedTenant);			
+		}
+	});
+	console.log(Date.now()+' - Exit from "updateTenant"');
 };
 
 
