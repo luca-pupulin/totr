@@ -8,18 +8,15 @@ const uuidv5 = require('uuid/v5');
 var LicenseSchema = new Schema({
 	condominiumID : {
 		type: ObjectId,
-		required: 'Enter condominiumID',
-		unique: true
+		required: 'Enter condominiumID'
 		},
 	tenantID : {
 		type: ObjectId,
-		required: 'Enter tenantID',
-		unique: true
+		required: 'Enter tenantID'
 		},
 	validUntilDate : {
 		type: Date,
-		required: 'Enter the validity date',
-		unique: true
+		required: 'Enter the validity date'
 		},
 	isActive: {
 		type: Boolean
@@ -30,7 +27,7 @@ var LicenseSchema = new Schema({
 });
 
 LicenseSchema.methods.setLicenseID = function(){
-	const namespace = process.env.hashed_namespace;
+	const namespace = process.env.HASHED_NAMESPACE;
 	this.licenseUUID = uuidv5(""+this.condominiumID+this.tenantID+this.validUntilDate, namespace);
 };
 
