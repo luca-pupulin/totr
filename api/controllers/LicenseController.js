@@ -28,7 +28,10 @@ exports.addLicense = function(req, res){
 
 exports.getQRCode = function(req, res){
 	console.log(Date.now()+' - Entered in "getQRCode". The request body is:\n' + req.body);
-	res.writeHead(200, {'Content-Type': 'text/html'});
+	
+	res.charset = 'utf-8'
+	res.contentType('text/html') 
+	res.writeHead(200);
     
 	var qr = qrCode.qrcode(4, 'M');
 	qr.addData(req.query.licenseKey);
