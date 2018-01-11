@@ -32,7 +32,7 @@ LicenseSchema.methods.setLicenseID = function(){
 	var toBeHashed = ""+this.condominiumID+this.tenantID+this.validUntilDate;
 	console.log(Date.now()+' - String to be hashed built:\n'+toBeHashed);
 	var generated_uuid = uuidv5(toBeHashed, namespace);
-	this.licenseUUID = uuid;
+	this.licenseUUID = generated_uuid;
 	console.log(Date.now()+' - Generated UUID:\n'+generated_uuid+"\n"+this.licenseUUID);
 };
 
