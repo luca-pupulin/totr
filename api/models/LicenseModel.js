@@ -22,8 +22,9 @@ var LicenseSchema = new Schema({
 		type: Boolean
 		},
 	licenseUUID: {
-		type: String
-		}
+		type: String,
+		unique:true
+	}
 });
 
 LicenseSchema.methods.setLicenseID = function(){

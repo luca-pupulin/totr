@@ -31,6 +31,14 @@ module.exports = function(app) {
 		
 	app.route('/totr/license/create')
 		.post(licenseController.addLicense);
+		
+	app.get("/",function(req, res){
+		res.json({"Page":"not found"});
+	});
+	
+	app.post("/",function(req, res){
+		res.json({"Functionality":"not found"});
+	});
 	
 	/*
 	app.route('/totr/admin/:myMethod')
