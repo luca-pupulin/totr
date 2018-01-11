@@ -2,7 +2,7 @@
 
 var mongoose = require('mongoose'),
 	License = mongoose.model('License'),
-	qrCode = require('qrcode');
+	qrCode = require('qrcode-npm');
 
 exports.addLicense = function(req, res){
 	console.log(Date.now()+' - Entered in "addLicense". The request body is:\n' + req.body);
