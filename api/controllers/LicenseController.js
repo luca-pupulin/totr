@@ -29,9 +29,7 @@ exports.addLicense = function(req, res){
 exports.getQRCode = function(req, res){
 	console.log(Date.now()+' - Entered in "getQRCode". The request body is:\n' + req.body);
 	
-	res.charset = 'utf-8'
-	res.contentType('text/html') 
-	res.writeHead(200);
+	res.setHeader("Content-Type", "text/html");
     
 	var qr = qrCode.qrcode(4, 'M');
 	qr.addData(req.query.licenseKey);
@@ -43,7 +41,8 @@ exports.getQRCode = function(req, res){
 	console.log(Date.now()+' - generated QR:\n'+qrCodeTable);
 	
 	responseBody += "</div>";
-	res.send(responseBody);
+	res.write(responseBody);
+	res.end();
 	
 	console.log(Date.now()+' - Exit from "addLicense"');
 };
