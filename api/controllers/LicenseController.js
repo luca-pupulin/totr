@@ -1,7 +1,8 @@
 'use strict';
 
 var mongoose = require('mongoose'),
-	License = mongoose.model('License');
+	License = mongoose.model('License'),
+	qrCode = require('qrcode');
 
 exports.addLicense = function(req, res){
 	console.log(Date.now()+' - Entered in "addLicense". The request body is:\n' + req.body);
@@ -23,4 +24,17 @@ exports.addLicense = function(req, res){
 		}
 	});
 	console.log(Date.now()+' - Exit from "addLicense"');
+};
+
+exports.getQRCode = function(req, res){
+	res.writeHead(200, {'Content-Type': 'text/plain'});
+    
+	var qr = qrCode.qrcode(4, 'M');
+	qr.addData(req.params.licenseKey);
+	qr.make();
+
+	res.write(qr.createImgTag(4));
+	res.write();
+	res.write(qr.createTableTag(4));
+	res.end();
 };

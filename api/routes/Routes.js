@@ -32,6 +32,9 @@ module.exports = function(app) {
 	app.route('/totr/license/create')
 		.post(licenseController.addLicense);
 		
+	app.route('/totr/license/getMyCode')
+		.get(licenseController.getQRCode);
+		
 	app.get("/",function(req, res){
 		res.json({"Page":"not found"});
 	});
