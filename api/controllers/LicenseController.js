@@ -9,6 +9,20 @@ exports.addLicense = function(req, res){
 	var new_License = new License(req.body);
 	new_License.setLicenseID();
 	
+	console.log(Date.now()+' - Try to save the new License biult from req.body');
+	new_License.save(function(err, createdLicense){		
+		if(err){
+			console.log(Date.now()+' - Error during the "save" operation:\n'+err);
+			res.send(err);
+		}
+		else{
+			console.log(Date.now()+' - License correctly saved. Here follows details:\n'+createdLicense);
+			//TODO:			
+			//Aggiornare il Tenant						
+			res.json(createdLicense);
+		}
+	});
+	/*
 	console.log(Date.now()+' - Check whether this Licence already exists');
 	License.findOne({licenseUUID: new_License.licenseUUID},
 		function(err, foundLicense) {
@@ -34,6 +48,6 @@ exports.addLicense = function(req, res){
 				});
 			}
 		}
-	);
+	);*/
 	console.log(Date.now()+' - Exit from "addLicense"');
 };
