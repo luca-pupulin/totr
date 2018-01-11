@@ -28,7 +28,12 @@ var LicenseSchema = new Schema({
 
 LicenseSchema.methods.setLicenseID = function(){
 	const namespace = process.env.HASHED_NAMESPACE;
-	this.licenseUUID = uuidv5(""+this.condominiumID+this.tenantID+this.validUntilDate, namespace);
+	console.log(Date.now()+' - HashedNamespace retrieved:\n'+namespace);
+	var toBeHashed = ""+this.condominiumID+this.tenantID+this.validUntilDate;
+	console.log(Date.now()+' - String to be hashed built:\n'+toBeHashed);
+	var generated_uuid = uuidv5(toBeHashed, namespace);
+	this.licenseUUID = uuid;
+	console.log(Date.now()+' - Generated UUID:\n'+generated_uuid+"\n"+this.licenseUUID);
 };
 
 LicenseSchema.methods.checkLicense = function(){
