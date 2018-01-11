@@ -39,7 +39,7 @@ exports.getQRCode = function(req, res){
 	responseBody += qrCodeTable;
 	console.log(Date.now()+' - generated QR:\n'+qrCodeTable);
 	
-	var responseBody += "</div>";
+	responseBody += "</div>";
 	res.send(responseBody);
 	
 	console.log(Date.now()+' - Exit from "addLicense"');
