@@ -67,3 +67,29 @@ exports.updateTenant = function(req, res){
 	});
 	console.log(Date.now()+' - Exit from "updateTenant"');
 };
+
+exports.retrieveTenant = function(req, res){
+	console.log(Date.now()+' - Entered in "retrieveTenant". The request body is:\n' + req.body);
+	console.log(Date.now()+' - Request parametes are:\n - ' + req.body._id);
+	
+	Tenant.findOne({_id: req.body._id},
+		function(err, tenant) {
+			console.log(Date.now()+' - Error: '+err+'\tTenant: '+tenant);
+			if(!err){
+				if(tenant != null){
+					console.log(Date.now()+' - Tenant found.');
+					res.json(tenant);
+				}
+				else{
+					console.log(Date.now()+' - Returned object "tenant" is null');
+					res.json({"Error":'Returned object "tenant" is null'});
+				}
+			}
+			else{
+				console.log(Date.now()+' - Error during the "findOne" operation:\n'+err);
+				res.send(err);
+			}
+		}
+	);
+	console.log(Date.now()+' - Exit from "retrieveTenant"');
+};

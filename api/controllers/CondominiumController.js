@@ -43,3 +43,29 @@ exports.updateCondominium = function(req, res){
 	});
 	console.log(Date.now()+' - Exit from "updateCondominium"');
 };
+
+exports.retrieveCondominium = function(req, res){
+	console.log(Date.now()+' - Entered in "retrieveCondominium". The request body is:\n' + req.body);
+	console.log(Date.now()+' - Request parametes are:\n - ' + req.body._id);
+	
+	Condominium.findOne({_id: req.body._id},
+		function(err, condominium) {
+			console.log(Date.now()+' - Error: '+err+'\tCondominium: '+condominium);
+			if(!err){
+				if(condominium != null){
+					console.log(Date.now()+' - Condominium found.');
+					res.json(condominium);
+				}
+				else{
+					console.log(Date.now()+' - Returned object "condominium" is null');
+					res.json({"Error":'Returned object "condominium" is null'});
+				}
+			}
+			else{
+				console.log(Date.now()+' - Error during the "findOne" operation:\n'+err);
+				res.send(err);
+			}
+		}
+	);
+	console.log(Date.now()+' - Exit from "retrieveCondominium"');
+};

@@ -13,7 +13,11 @@ module.exports = function(app) {
 	
 	app.route('/totr/admin/login')
 		.post(administratorController.login);
-		
+
+	/*app.route('/totr/admin/retrieve')
+		.get(administratorController.retrieveAdministrator);		
+	*/
+	
 	app.route('/totr/tenant/add')
 		.post(tenantController.addTenant);
 		
@@ -23,17 +27,26 @@ module.exports = function(app) {
 	app.route('/totr/tenant/remove')
 		.post(tenantController.removeTenant);
 	
+	app.route('/totr/tenant/retrieve')
+		.get(tenantController.retrieveTenant);		
+	
 	app.route('/totr/condominium/create')
 		.post(condominiumController.createCondominium);
 		
 	app.route('/totr/condominium/update')
 		.post(condominiumController.updateCondominium);
 		
+	app.route('/totr/condominium/retrieve')
+		.get(condominiumController.retrieveCondominium);		
+		
 	app.route('/totr/license/create')
 		.post(licenseController.addLicense);
 		
 	app.route('/totr/license/getMyCode')
 		.get(licenseController.getQRCode);
+	
+	app.route('/totr/license/retrieve')
+		.get(licenseController.retrieveLicense);
 		
 	app.get("/",function(req, res){
 		res.json({"Page":"not found"});

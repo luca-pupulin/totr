@@ -46,3 +46,29 @@ exports.getQRCode = function(req, res){
 	
 	console.log(Date.now()+' - Exit from "addLicense"');
 };
+
+exports.retrieveLicense = function(req, res){
+	console.log(Date.now()+' - Entered in "retrieveLicense". The request body is:\n' + req.body);
+	console.log(Date.now()+' - Request parametes are:\n - ' + req.body.licenseUUID);
+	
+	License.findOne({licenseUUID: req.body.licenseUUID},
+		function(err, license) {
+			console.log(Date.now()+' - Error: '+err+'\tLicense: '+license);
+			if(!err){
+				if(license != null){
+					console.log(Date.now()+' - License found.');
+					res.json(license);
+				}
+				else{
+					console.log(Date.now()+' - Returned object "license" is null');
+					res.json({"Error":'Returned object "license" is null'});
+				}
+			}
+			else{
+				console.log(Date.now()+' - Error during the "findOne" operation:\n'+err);
+				res.send(err);
+			}
+		}
+	);
+	console.log(Date.now()+' - Exit from "retrieveLicense"');
+};
