@@ -49,9 +49,9 @@ exports.getQRCode = function(req, res){
 
 exports.retrieveLicense = function(req, res){
 	console.log(Date.now()+' - Entered in "retrieveLicense". The request body is:\n' + req.body);
-	console.log(Date.now()+' - Request parametes are:\n - ' + req.body.licenseUUID);
+	console.log(Date.now()+' - Request parametes are:\n - ' + req.query.licenseUUID);
 	
-	License.findOne({licenseUUID: req.body.licenseUUID},
+	License.findOne({licenseUUID: req.query.licenseUUID},
 		function(err, license) {
 			console.log(Date.now()+' - Error: '+err+'\tLicense: '+license);
 			if(!err){

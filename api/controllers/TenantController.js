@@ -70,9 +70,9 @@ exports.updateTenant = function(req, res){
 
 exports.retrieveTenant = function(req, res){
 	console.log(Date.now()+' - Entered in "retrieveTenant". The request body is:\n' + req.body);
-	console.log(Date.now()+' - Request parametes are:\n - ' + req.body._id);
+	console.log(Date.now()+' - Request parametes are:\n - ' + req.query._id);
 	
-	Tenant.findOne({_id: req.body._id},
+	Tenant.findById(req.query._id,
 		function(err, tenant) {
 			console.log(Date.now()+' - Error: '+err+'\tTenant: '+tenant);
 			if(!err){
