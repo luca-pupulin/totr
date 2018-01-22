@@ -14,7 +14,7 @@ var TenantSchema = new Schema({
     required: 'Please enter the Flat Name'
   },
   flatNumber: {
-	type: int,
+	type: Number,
     required: 'Please enter the Flat Number'
   },
   emailAddress: {
