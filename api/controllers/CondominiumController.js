@@ -45,7 +45,7 @@ exports.updateCondominium = function(req, res){
 };
 
 exports.retrieveCondominium = function(req, res){
-	console.log(Date.now()+' - Entered in "retrieveCondominium". The request body is:\n' + req.body);
+	console.log(Date.now()+' - Entered in "retrieveCondominium". The request body is:\n' + req.query);
 	console.log(Date.now()+' - Request parametes are:\n - ' + req.query._id);
 	
 	Condominium.findById(req.query._id,

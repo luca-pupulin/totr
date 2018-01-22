@@ -27,7 +27,7 @@ exports.addLicense = function(req, res){
 };
 
 exports.getQRCode = function(req, res){
-	console.log(Date.now()+' - Entered in "getQRCode". The request body is:\n' + req.body);
+	console.log(Date.now()+' - Entered in "getQRCode". The request body is:\n' + req.query);
 	
 	res.setHeader("Content-Type", "text/html");
     
@@ -48,7 +48,7 @@ exports.getQRCode = function(req, res){
 };
 
 exports.retrieveLicense = function(req, res){
-	console.log(Date.now()+' - Entered in "retrieveLicense". The request body is:\n' + req.body);
+	console.log(Date.now()+' - Entered in "retrieveLicense". The request body is:\n' + req.query);
 	console.log(Date.now()+' - Request parametes are:\n - ' + req.query.licenseUUID);
 	
 	License.findOne({licenseUUID: req.query.licenseUUID},

@@ -46,7 +46,7 @@ exports.removeTenant = function(req, res){
 };
 
 exports.updateTenant = function(req, res){
-	console.log(Date.now()+' - Entered in "updateTenant". The request body is:\n' + req.body);
+	console.log(Date.now()+' - Entered in "updateTenant". The request QS is:\n' + req.body);
 	
 	var tenantToUpdate = new Tenant(req.body);
 	
@@ -69,7 +69,7 @@ exports.updateTenant = function(req, res){
 };
 
 exports.retrieveTenant = function(req, res){
-	console.log(Date.now()+' - Entered in "retrieveTenant". The request body is:\n' + req.body);
+	console.log(Date.now()+' - Entered in "retrieveTenant". The request QS is:\n' + req.query);
 	console.log(Date.now()+' - Request parametes are:\n - ' + req.query._id);
 	
 	Tenant.findById(req.query._id,
